@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather_data %}
+        {% if "error" in weather_data %}
+            <p>{{ weather_data.error }}</p>
+        {% else %}
+            <h2>Weather in {{ city }}</h2>  <!-- Use the city name inputted by the user -->
+            <p>{{ weather_data.weather_descriptions[0] }}</p>  <!-- Weather description from Weatherstack -->
+            <p>Temperature: {{ weather_data.temperature }}°C</p>  <!-- Temperature from Weatherstack -->
+        {% endif %}
+    {% endif %}
+</body>
+</html>

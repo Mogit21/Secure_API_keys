@@ -3,12 +3,23 @@ import requests
 
 app = Flask(__name__)
 
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the variables
+api_key = os.getenv("API_KEY")
+database_url = os.getenv("DATABASE_URL")
+
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     weather_data = None
     if request.method == "POST":
         city = request.form.get("city")
-        api_key = "key"  # Replace with your Weatherstack API key
+        # api_key = "key"  # Replace with your Weatherstack API key
         base_url = "http://api.weatherstack.com/current"
         params = {"access_key": api_key, "query": city}
 
